@@ -10,10 +10,10 @@ fetch ("https://striveschool-api.herokuapp.com/books")
         let container = ""  
 
         container +="<div>"
-        container += "<div><img class=img-fluid src='" +element.img + "'/>" +"</div>"
-        container += "<div>"+element.title +"</div>"
-        container += "<div>"+element.price +"€</div>"
-        container += "</div>"
+        container += "<div class='card m-2' style='width: 18rem;'><img src='" +element.img + "'class='card-img-top img-fluid'/>"
+        container += "<div class='card-body text-center'><h6 class='card-title'>"+element.title +"</h6><p class='card-text'>Prezzo: "+element.price +"€</p>"
+        container += "<a href='#' class='btn btn-secondary'>Aggiungi al carrello</a>"
+        container += "</div></div>"
 
 
         let libri = document.querySelector(".contenitore")
