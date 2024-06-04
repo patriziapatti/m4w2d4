@@ -11,10 +11,12 @@ fetch ("https://striveschool-api.herokuapp.com/books")
         tuttiLibri= data
         let container = ""  
 
-        container +="<div>"
-        container += "<div class='card m-2' style='width: 18rem; height: 42rem;'><img src='" +element.img + "'class='card-img-top img-fluid'/>"
+        container +="<div id="+element.asin+">"
+        container += "<div class='card m-2' style='width: 18rem; height: 43rem;'><img src='" +element.img + "'class='card-img-top img-fluid'/>"
         container += "<div class='card-body text-center'><h6 class='card-title'>"+element.title +"</h6><p class='card-text'>Prezzo: "+element.price +"€</p>"
-        container += "<button type='button' class='btn btn-secondary' onclick= 'aggiungi(\"" + element.title + " " + element.price + " €\")'>Aggiungi al carrello</button>"
+        container += "<div class='d-flex'><button type='button' class='btn btn-secondary p-2' onclick= 'aggiungi(\"" + element.title + " " + element.price + " €\")'>Aggiungi al carrello</button>"
+        container += "<button type='button' class='btn btn-danger ms-1'onclick='nascondi(\""+element.asin+"\")'>Nascondi</button>"
+        container += "</div><div><a href='./dettagli.html?asin=" + element.asin +"&price="+ element.price +"'>Altre info</div>"
         container += "</div></div>"
 
 
@@ -42,6 +44,11 @@ function aggiungi(libro){
 
 }
 
+function nascondi(asin){
+    console.log(asin)
+    document.getElementById(asin).style.display="none"
+}
+
 function svuotaCarrello(){
     carrello =[]
     let contatore = document.getElementById("contatoreCarrello")
@@ -66,11 +73,13 @@ function filtraLibri(){
         if(loInclude === true){
             let container = ""  
 
-        container +="<div>"
-        container += "<div class='card m-2' style='width: 18rem; height: 42rem;'><img src='" +element.img + "'class='card-img-top img-fluid'/>"
-        container += "<div class='card-body text-center'><h6 class='card-title'>"+element.title +"</h6><p class='card-text'>Prezzo: "+element.price +"€</p>"
-        container += "<button type='button' class='btn btn-secondary'onclick= 'aggiungi(\""+ element.title +"\")'>Aggiungi al carrello</button>"
-        container += "</div></div>"
+            container +="<div id="+element.asin+">"
+            container += "<div class='card m-2' style='width: 18rem; height: 43rem;'><img src='" +element.img + "'class='card-img-top img-fluid'/>"
+            container += "<div class='card-body text-center'><h6 class='card-title'>"+element.title +"</h6><p class='card-text'>Prezzo: "+element.price +"€</p>"
+            container += "<div class='d-flex'><button type='button' class='btn btn-secondary p-2' onclick= 'aggiungi(\"" + element.title + " " + element.price + " €\")'>Aggiungi al carrello</button>"
+            container += "<button type='button' class='btn btn-danger ms-1'onclick='nascondi(\""+element.asin+"\")'>Nascondi</button>"
+            container += "</div><div><a href='./dettagli.html?asin=" + element.asin +"&price="+ element.price +"'>Altre info</div>"
+            container += "</div></div>"
 
             let libri = document.querySelector(".contenitore")
             libri.innerHTML+= container
